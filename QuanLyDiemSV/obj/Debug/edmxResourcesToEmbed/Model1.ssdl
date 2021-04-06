@@ -1,0 +1,344 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLDiemSVModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="GiangVien">
+    <Key>
+      <PropertyRef Name="IDGV" />
+    </Key>
+    <Property Name="IDGV" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="TenGV" Type="nvarchar" MaxLength="50" />
+    <Property Name="IDKhoa" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="HocKy">
+    <Key>
+      <PropertyRef Name="IDHocKy" />
+    </Key>
+    <Property Name="IDHocKy" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="ThoiGianBatDau" Type="datetime" />
+    <Property Name="ThoiGianKetThuc" Type="datetime" />
+  </EntityType>
+  <EntityType Name="HocPhan">
+    <Key>
+      <PropertyRef Name="IDHocPhan" />
+    </Key>
+    <Property Name="IDHocPhan" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="TenHocPhan" Type="nvarchar" MaxLength="100" />
+    <Property Name="SoTiet" Type="float" />
+    <Property Name="SoTC" Type="int" />
+    <Property Name="HinhThucThi" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="KetQuaLopHP">
+    <Key>
+      <PropertyRef Name="IDSinhVien" />
+      <PropertyRef Name="IDLopHP" />
+    </Key>
+    <Property Name="IDSinhVien" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="IDLopHP" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="DiemCC" Type="float" />
+    <Property Name="DiemTX" Type="float" />
+    <Property Name="DiemThi" Type="float" />
+    <Property Name="DiemHe10" Type="float" />
+    <Property Name="DiemHe4" Type="float" />
+    <Property Name="DiemChu" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Khoa">
+    <Key>
+      <PropertyRef Name="IDKhoa" />
+    </Key>
+    <Property Name="IDKhoa" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="TenKhoa" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Lop">
+    <Key>
+      <PropertyRef Name="IDLop" />
+    </Key>
+    <Property Name="IDLop" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="TenLop" Type="nvarchar" MaxLength="50" />
+    <Property Name="NienKhoa" Type="varchar" MaxLength="50" />
+    <Property Name="SiSo" Type="int" />
+    <Property Name="IDKhoa" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="LopHP">
+    <Key>
+      <PropertyRef Name="IDLopHP" />
+    </Key>
+    <Property Name="IDLopHP" Type="char" MaxLength="20" Nullable="false" />
+    <Property Name="PhongHoc" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgayThi" Type="datetime" />
+    <Property Name="TongSoSV" Type="int" />
+    <Property Name="IDHocPhan" Type="char" MaxLength="10" />
+    <Property Name="IDHocKy" Type="char" MaxLength="10" />
+    <Property Name="IDGV" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="SinhVien">
+    <Key>
+      <PropertyRef Name="IDSinhVien" />
+    </Key>
+    <Property Name="IDSinhVien" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="HoTen" Type="nvarchar" MaxLength="50" />
+    <Property Name="NgaySinh" Type="datetime" />
+    <Property Name="GioiTinh" Type="nvarchar" MaxLength="10" />
+    <Property Name="KhoaDKi" Type="char" MaxLength="10" />
+    <Property Name="SoTCDaDat" Type="int" />
+    <Property Name="SoTCDaDKi" Type="int" />
+    <Property Name="DiemTichLuy" Type="float" />
+    <Property Name="IDLop" Type="char" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TongKetKy">
+    <Key>
+      <PropertyRef Name="IDSinhVien" />
+      <PropertyRef Name="IDHocKy" />
+    </Key>
+    <Property Name="IDSinhVien" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="IDHocKy" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="DiemTBC" Type="float" />
+    <Property Name="SoTCDKi" Type="int" />
+    <Property Name="SoTCNo" Type="int" />
+    <Property Name="XepLoai" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="fk_IDGV_LHP">
+    <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+    <End Role="LopHP" Type="Self.LopHP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiangVien">
+        <PropertyRef Name="IDGV" />
+      </Principal>
+      <Dependent Role="LopHP">
+        <PropertyRef Name="IDGV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDHocKy_LHP">
+    <End Role="HocKy" Type="Self.HocKy" Multiplicity="0..1" />
+    <End Role="LopHP" Type="Self.LopHP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HocKy">
+        <PropertyRef Name="IDHocKy" />
+      </Principal>
+      <Dependent Role="LopHP">
+        <PropertyRef Name="IDHocKy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDHocKy_TKK">
+    <End Role="HocKy" Type="Self.HocKy" Multiplicity="1" />
+    <End Role="TongKetKy" Type="Self.TongKetKy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HocKy">
+        <PropertyRef Name="IDHocKy" />
+      </Principal>
+      <Dependent Role="TongKetKy">
+        <PropertyRef Name="IDHocKy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDHocPhan_LHP">
+    <End Role="HocPhan" Type="Self.HocPhan" Multiplicity="0..1" />
+    <End Role="LopHP" Type="Self.LopHP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HocPhan">
+        <PropertyRef Name="IDHocPhan" />
+      </Principal>
+      <Dependent Role="LopHP">
+        <PropertyRef Name="IDHocPhan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDKhoa_GV">
+    <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
+    <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Khoa">
+        <PropertyRef Name="IDKhoa" />
+      </Principal>
+      <Dependent Role="GiangVien">
+        <PropertyRef Name="IDKhoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDKhoa_Lop">
+    <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
+    <End Role="Lop" Type="Self.Lop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Khoa">
+        <PropertyRef Name="IDKhoa" />
+      </Principal>
+      <Dependent Role="Lop">
+        <PropertyRef Name="IDKhoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDLop_SV">
+    <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lop">
+        <PropertyRef Name="IDLop" />
+      </Principal>
+      <Dependent Role="SinhVien">
+        <PropertyRef Name="IDLop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDLopHP_KQLHP">
+    <End Role="LopHP" Type="Self.LopHP" Multiplicity="1" />
+    <End Role="KetQuaLopHP" Type="Self.KetQuaLopHP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LopHP">
+        <PropertyRef Name="IDLopHP" />
+      </Principal>
+      <Dependent Role="KetQuaLopHP">
+        <PropertyRef Name="IDLopHP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDSinhVien_KQLHP">
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
+    <End Role="KetQuaLopHP" Type="Self.KetQuaLopHP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="IDSinhVien" />
+      </Principal>
+      <Dependent Role="KetQuaLopHP">
+        <PropertyRef Name="IDSinhVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDSinhVien_TKK">
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
+    <End Role="TongKetKy" Type="Self.TongKetKy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="IDSinhVien" />
+      </Principal>
+      <Dependent Role="TongKetKy">
+        <PropertyRef Name="IDSinhVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="addLHP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLHP" Type="char" Mode="In" />
+    <Parameter Name="IDHP" Type="char" Mode="In" />
+    <Parameter Name="hk" Type="char" Mode="In" />
+    <Parameter Name="NgayThi" Type="datetime" Mode="In" />
+    <Parameter Name="PH" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDGV" Type="char" Mode="In" />
+  </Function>
+  <Function Name="addSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSV" Type="char" Mode="In" />
+    <Parameter Name="ten" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDL" Type="char" Mode="In" />
+    <Parameter Name="NS" Type="datetime" Mode="In" />
+    <Parameter Name="GT" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="delLHP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLHP" Type="char" Mode="In" />
+  </Function>
+  <Function Name="delSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSV" Type="char" Mode="In" />
+  </Function>
+  <Function Name="insertDHP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSV" Type="char" Mode="In" />
+    <Parameter Name="IDLHP" Type="char" Mode="In" />
+    <Parameter Name="diemCC" Type="float" Mode="In" />
+    <Parameter Name="diemTX" Type="float" Mode="In" />
+    <Parameter Name="diemThi" Type="float" Mode="In" />
+  </Function>
+  <Function Name="updLHP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLHP" Type="char" Mode="In" />
+    <Parameter Name="IDHP" Type="char" Mode="In" />
+    <Parameter Name="hk" Type="char" Mode="In" />
+    <Parameter Name="NgayThi" Type="datetime" Mode="In" />
+    <Parameter Name="PH" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDGV" Type="char" Mode="In" />
+  </Function>
+  <Function Name="updSV" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSV" Type="char" Mode="In" />
+    <Parameter Name="ten" Type="nvarchar" Mode="In" />
+    <Parameter Name="IDL" Type="char" Mode="In" />
+    <Parameter Name="NS" Type="datetime" Mode="In" />
+    <Parameter Name="GT" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="viewCCHT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDHK" Type="char" Mode="In" />
+  </Function>
+  <Function Name="viewDiemLHP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDLHP" Type="char" Mode="In" />
+  </Function>
+  <Function Name="viewHB" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDHK" Type="char" Mode="In" />
+  </Function>
+  <Function Name="viewHP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDHP" Type="char" Mode="In" />
+  </Function>
+  <Function Name="viewProfile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDSV" Type="char" Mode="In" />
+  </Function>
+  <Function Name="viewSTPrInLHP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="MaLHP" Type="char" Mode="In" />
+  </Function>
+  <Function Name="viewWithClass" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="IDL" Type="char" Mode="In" />
+  </Function>
+  <EntityContainer Name="QLDiemSVModelStoreContainer">
+    <EntitySet Name="GiangVien" EntityType="Self.GiangVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HocKy" EntityType="Self.HocKy" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="HocPhan" EntityType="Self.HocPhan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KetQuaLopHP" EntityType="Self.KetQuaLopHP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Khoa" EntityType="Self.Khoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Lop" EntityType="Self.Lop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LopHP" EntityType="Self.LopHP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SinhVien" EntityType="Self.SinhVien" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TongKetKy" EntityType="Self.TongKetKy" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="fk_IDGV_LHP" Association="Self.fk_IDGV_LHP">
+      <End Role="GiangVien" EntitySet="GiangVien" />
+      <End Role="LopHP" EntitySet="LopHP" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDHocKy_LHP" Association="Self.fk_IDHocKy_LHP">
+      <End Role="HocKy" EntitySet="HocKy" />
+      <End Role="LopHP" EntitySet="LopHP" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDHocKy_TKK" Association="Self.fk_IDHocKy_TKK">
+      <End Role="HocKy" EntitySet="HocKy" />
+      <End Role="TongKetKy" EntitySet="TongKetKy" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDHocPhan_LHP" Association="Self.fk_IDHocPhan_LHP">
+      <End Role="HocPhan" EntitySet="HocPhan" />
+      <End Role="LopHP" EntitySet="LopHP" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDKhoa_GV" Association="Self.fk_IDKhoa_GV">
+      <End Role="Khoa" EntitySet="Khoa" />
+      <End Role="GiangVien" EntitySet="GiangVien" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDKhoa_Lop" Association="Self.fk_IDKhoa_Lop">
+      <End Role="Khoa" EntitySet="Khoa" />
+      <End Role="Lop" EntitySet="Lop" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDLop_SV" Association="Self.fk_IDLop_SV">
+      <End Role="Lop" EntitySet="Lop" />
+      <End Role="SinhVien" EntitySet="SinhVien" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDLopHP_KQLHP" Association="Self.fk_IDLopHP_KQLHP">
+      <End Role="LopHP" EntitySet="LopHP" />
+      <End Role="KetQuaLopHP" EntitySet="KetQuaLopHP" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDSinhVien_KQLHP" Association="Self.fk_IDSinhVien_KQLHP">
+      <End Role="SinhVien" EntitySet="SinhVien" />
+      <End Role="KetQuaLopHP" EntitySet="KetQuaLopHP" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDSinhVien_TKK" Association="Self.fk_IDSinhVien_TKK">
+      <End Role="SinhVien" EntitySet="SinhVien" />
+      <End Role="TongKetKy" EntitySet="TongKetKy" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

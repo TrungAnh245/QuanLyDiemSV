@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="QLDiemSVModelStoreContainer" CdmEntityContainer="QLDiemSVCon">
+    <EntitySetMapping Name="GiangViens">
+      <EntityTypeMapping TypeName="QLDiemSVModel.GiangVien">
+        <MappingFragment StoreEntitySet="GiangVien">
+          <ScalarProperty Name="IDGV" ColumnName="IDGV" />
+          <ScalarProperty Name="TenGV" ColumnName="TenGV" />
+          <ScalarProperty Name="IDKhoa" ColumnName="IDKhoa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HocKies">
+      <EntityTypeMapping TypeName="QLDiemSVModel.HocKy">
+        <MappingFragment StoreEntitySet="HocKy">
+          <ScalarProperty Name="IDHocKy" ColumnName="IDHocKy" />
+          <ScalarProperty Name="ThoiGianBatDau" ColumnName="ThoiGianBatDau" />
+          <ScalarProperty Name="ThoiGianKetThuc" ColumnName="ThoiGianKetThuc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HocPhans">
+      <EntityTypeMapping TypeName="QLDiemSVModel.HocPhan">
+        <MappingFragment StoreEntitySet="HocPhan">
+          <ScalarProperty Name="IDHocPhan" ColumnName="IDHocPhan" />
+          <ScalarProperty Name="TenHocPhan" ColumnName="TenHocPhan" />
+          <ScalarProperty Name="SoTiet" ColumnName="SoTiet" />
+          <ScalarProperty Name="SoTC" ColumnName="SoTC" />
+          <ScalarProperty Name="HinhThucThi" ColumnName="HinhThucThi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KetQuaLopHPs">
+      <EntityTypeMapping TypeName="QLDiemSVModel.KetQuaLopHP">
+        <MappingFragment StoreEntitySet="KetQuaLopHP">
+          <ScalarProperty Name="IDSinhVien" ColumnName="IDSinhVien" />
+          <ScalarProperty Name="IDLopHP" ColumnName="IDLopHP" />
+          <ScalarProperty Name="DiemCC" ColumnName="DiemCC" />
+          <ScalarProperty Name="DiemTX" ColumnName="DiemTX" />
+          <ScalarProperty Name="DiemThi" ColumnName="DiemThi" />
+          <ScalarProperty Name="DiemHe10" ColumnName="DiemHe10" />
+          <ScalarProperty Name="DiemHe4" ColumnName="DiemHe4" />
+          <ScalarProperty Name="DiemChu" ColumnName="DiemChu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Khoas">
+      <EntityTypeMapping TypeName="QLDiemSVModel.Khoa">
+        <MappingFragment StoreEntitySet="Khoa">
+          <ScalarProperty Name="IDKhoa" ColumnName="IDKhoa" />
+          <ScalarProperty Name="TenKhoa" ColumnName="TenKhoa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Lops">
+      <EntityTypeMapping TypeName="QLDiemSVModel.Lop">
+        <MappingFragment StoreEntitySet="Lop">
+          <ScalarProperty Name="IDLop" ColumnName="IDLop" />
+          <ScalarProperty Name="TenLop" ColumnName="TenLop" />
+          <ScalarProperty Name="NienKhoa" ColumnName="NienKhoa" />
+          <ScalarProperty Name="SiSo" ColumnName="SiSo" />
+          <ScalarProperty Name="IDKhoa" ColumnName="IDKhoa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LopHPs">
+      <EntityTypeMapping TypeName="QLDiemSVModel.LopHP">
+        <MappingFragment StoreEntitySet="LopHP">
+          <ScalarProperty Name="IDLopHP" ColumnName="IDLopHP" />
+          <ScalarProperty Name="PhongHoc" ColumnName="PhongHoc" />
+          <ScalarProperty Name="NgayThi" ColumnName="NgayThi" />
+          <ScalarProperty Name="TongSoSV" ColumnName="TongSoSV" />
+          <ScalarProperty Name="IDHocPhan" ColumnName="IDHocPhan" />
+          <ScalarProperty Name="IDHocKy" ColumnName="IDHocKy" />
+          <ScalarProperty Name="IDGV" ColumnName="IDGV" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SinhViens">
+      <EntityTypeMapping TypeName="QLDiemSVModel.SinhVien">
+        <MappingFragment StoreEntitySet="SinhVien">
+          <ScalarProperty Name="IDSinhVien" ColumnName="IDSinhVien" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="KhoaDKi" ColumnName="KhoaDKi" />
+          <ScalarProperty Name="SoTCDaDat" ColumnName="SoTCDaDat" />
+          <ScalarProperty Name="SoTCDaDKi" ColumnName="SoTCDaDKi" />
+          <ScalarProperty Name="DiemTichLuy" ColumnName="DiemTichLuy" />
+          <ScalarProperty Name="IDLop" ColumnName="IDLop" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="QLDiemSVModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TongKetKies">
+      <EntityTypeMapping TypeName="QLDiemSVModel.TongKetKy">
+        <MappingFragment StoreEntitySet="TongKetKy">
+          <ScalarProperty Name="IDSinhVien" ColumnName="IDSinhVien" />
+          <ScalarProperty Name="IDHocKy" ColumnName="IDHocKy" />
+          <ScalarProperty Name="DiemTBC" ColumnName="DiemTBC" />
+          <ScalarProperty Name="SoTCDKi" ColumnName="SoTCDKi" />
+          <ScalarProperty Name="SoTCNo" ColumnName="SoTCNo" />
+          <ScalarProperty Name="XepLoai" ColumnName="XepLoai" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="viewDiemLHP" FunctionName="QLDiemSVModel.Store.viewDiemLHP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLDiemSVModel.viewDiemLHP_Result">
+          <ScalarProperty Name="IDSinhVien" ColumnName="IDSinhVien" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="IDLopHP" ColumnName="IDLopHP" />
+          <ScalarProperty Name="DiemCC" ColumnName="DiemCC" />
+          <ScalarProperty Name="DiemTX" ColumnName="DiemTX" />
+          <ScalarProperty Name="DiemThi" ColumnName="DiemThi" />
+          <ScalarProperty Name="DiemHe10" ColumnName="DiemHe10" />
+          <ScalarProperty Name="DiemHe4" ColumnName="DiemHe4" />
+          <ScalarProperty Name="DiemChu" ColumnName="DiemChu" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="insertDHP" FunctionName="QLDiemSVModel.Store.insertDHP" />
+    <FunctionImportMapping FunctionImportName="viewHB" FunctionName="QLDiemSVModel.Store.viewHB">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLDiemSVModel.viewHB_Result">
+          <ScalarProperty Name="Xếp_Hạng" ColumnName="Xếp Hạng" />
+          <ScalarProperty Name="IDSinhVien" ColumnName="IDSinhVien" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="IDLop" ColumnName="IDLop" />
+          <ScalarProperty Name="IDKhoa" ColumnName="IDKhoa" />
+          <ScalarProperty Name="SoTCDKi" ColumnName="SoTCDKi" />
+          <ScalarProperty Name="Số_TC_Đạt" ColumnName="Số TC Đạt" />
+          <ScalarProperty Name="DiemTBC" ColumnName="DiemTBC" />
+          <ScalarProperty Name="XepLoai" ColumnName="XepLoai" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="viewWithClass" FunctionName="QLDiemSVModel.Store.viewWithClass">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLDiemSVModel.viewWithClass_Result">
+          <ScalarProperty Name="IDSinhVien" ColumnName="IDSinhVien" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="SoTCDaDKi" ColumnName="SoTCDaDKi" />
+          <ScalarProperty Name="SoTCDaDat" ColumnName="SoTCDaDat" />
+          <ScalarProperty Name="IDLop" ColumnName="IDLop" />
+          <ScalarProperty Name="TenKhoa" ColumnName="TenKhoa" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="viewProfile" FunctionName="QLDiemSVModel.Store.viewProfile">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLDiemSVModel.viewProfile_Result">
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="DiemTichLuy" ColumnName="DiemTichLuy" />
+          <ScalarProperty Name="SoTCDaDKi" ColumnName="SoTCDaDKi" />
+          <ScalarProperty Name="SoTCDaDat" ColumnName="SoTCDaDat" />
+          <ScalarProperty Name="IDLop" ColumnName="IDLop" />
+          <ScalarProperty Name="TenKhoa" ColumnName="TenKhoa" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="delSV" FunctionName="QLDiemSVModel.Store.delSV" />
+    <FunctionImportMapping FunctionImportName="updSV" FunctionName="QLDiemSVModel.Store.updSV" />
+    <FunctionImportMapping FunctionImportName="addSV" FunctionName="QLDiemSVModel.Store.addSV" />
+    <FunctionImportMapping FunctionImportName="viewCCHT" FunctionName="QLDiemSVModel.Store.viewCCHT">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLDiemSVModel.viewCCHT_Result">
+          <ScalarProperty Name="IDSinhVien" ColumnName="IDSinhVien" />
+          <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+          <ScalarProperty Name="IDLop" ColumnName="IDLop" />
+          <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+          <ScalarProperty Name="GioiTinh" ColumnName="GioiTinh" />
+          <ScalarProperty Name="IDKhoa" ColumnName="IDKhoa" />
+          <ScalarProperty Name="DiemTBC" ColumnName="DiemTBC" />
+          <ScalarProperty Name="Số_Mức_Cảnh_Cáo" ColumnName="Số Mức Cảnh Cáo" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="viewHP" FunctionName="QLDiemSVModel.Store.viewHP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLDiemSVModel.viewHP_Result">
+          <ScalarProperty Name="IDLopHP" ColumnName="IDLopHP" />
+          <ScalarProperty Name="PhongHoc" ColumnName="PhongHoc" />
+          <ScalarProperty Name="NgayThi" ColumnName="NgayThi" />
+          <ScalarProperty Name="IDHocKy" ColumnName="IDHocKy" />
+          <ScalarProperty Name="TongSoSV" ColumnName="TongSoSV" />
+          <ScalarProperty Name="TenHocPhan" ColumnName="TenHocPhan" />
+          <ScalarProperty Name="GV" ColumnName="GV" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="updLHP" FunctionName="QLDiemSVModel.Store.updLHP" />
+    <FunctionImportMapping FunctionImportName="addLHP" FunctionName="QLDiemSVModel.Store.addLHP" />
+    <FunctionImportMapping FunctionImportName="delLHP" FunctionName="QLDiemSVModel.Store.delLHP" />
+    <FunctionImportMapping FunctionImportName="viewSTPrInLHP" FunctionName="QLDiemSVModel.Store.viewSTPrInLHP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="QLDiemSVModel.viewSTPrInLHP_Result">
+          <ScalarProperty Name="Mã_Sinh_Viên" ColumnName="Mã Sinh Viên" />
+          <ScalarProperty Name="Họ_Tên" ColumnName="Họ Tên" />
+          <ScalarProperty Name="Ngày_Sinh" ColumnName="Ngày Sinh" />
+          <ScalarProperty Name="Giới_Tính" ColumnName="Giới Tính" />
+          <ScalarProperty Name="Lớp" ColumnName="Lớp" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

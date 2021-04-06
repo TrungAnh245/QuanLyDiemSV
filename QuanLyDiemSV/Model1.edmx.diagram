@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f0457362701f4ee19fd978d728e2b8ea" Name="Diagram1">
+        <EntityTypeShape EntityType="QLDiemSVModel.GiangVien" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDiemSVModel.HocKy" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDiemSVModel.HocPhan" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDiemSVModel.KetQuaLopHP" Width="1.5" PointX="7.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDiemSVModel.Khoa" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDiemSVModel.Lop" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDiemSVModel.LopHP" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDiemSVModel.SinhVien" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDiemSVModel.sysdiagram" Width="1.5" PointX="5.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLDiemSVModel.TongKetKy" Width="1.5" PointX="7.5" PointY="5.5" IsExpanded="true" />
+        <AssociationConnector Association="QLDiemSVModel.fk_IDGV_LHP" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDiemSVModel.fk_IDKhoa_GV" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDiemSVModel.fk_IDHocKy_LHP" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDiemSVModel.fk_IDHocKy_TKK" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDiemSVModel.fk_IDHocPhan_LHP" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDiemSVModel.fk_IDLopHP_KQLHP" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDiemSVModel.fk_IDSinhVien_KQLHP" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDiemSVModel.fk_IDKhoa_Lop" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDiemSVModel.fk_IDLop_SV" ManuallyRouted="false" />
+        <AssociationConnector Association="QLDiemSVModel.fk_IDSinhVien_TKK" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

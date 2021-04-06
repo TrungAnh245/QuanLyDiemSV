@@ -1,0 +1,543 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLDiemSVModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="GiangVien">
+    <Key>
+      <PropertyRef Name="IDGV" />
+    </Key>
+    <Property Name="IDGV" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TenGV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IDKhoa" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="LopHPs" Relationship="Self.fk_IDGV_LHP" FromRole="GiangVien" ToRole="LopHP" />
+    <NavigationProperty Name="Khoa" Relationship="Self.fk_IDKhoa_GV" FromRole="GiangVien" ToRole="Khoa" />
+  </EntityType>
+  <EntityType Name="HocKy">
+    <Key>
+      <PropertyRef Name="IDHocKy" />
+    </Key>
+    <Property Name="IDHocKy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ThoiGianBatDau" Type="DateTime" Precision="3" />
+    <Property Name="ThoiGianKetThuc" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="LopHPs" Relationship="Self.fk_IDHocKy_LHP" FromRole="HocKy" ToRole="LopHP" />
+    <NavigationProperty Name="TongKetKies" Relationship="Self.fk_IDHocKy_TKK" FromRole="HocKy" ToRole="TongKetKy" />
+  </EntityType>
+  <EntityType Name="HocPhan">
+    <Key>
+      <PropertyRef Name="IDHocPhan" />
+    </Key>
+    <Property Name="IDHocPhan" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TenHocPhan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SoTiet" Type="Double" />
+    <Property Name="SoTC" Type="Int32" />
+    <Property Name="HinhThucThi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="LopHPs" Relationship="Self.fk_IDHocPhan_LHP" FromRole="HocPhan" ToRole="LopHP" />
+  </EntityType>
+  <EntityType Name="KetQuaLopHP">
+    <Key>
+      <PropertyRef Name="IDSinhVien" />
+      <PropertyRef Name="IDLopHP" />
+    </Key>
+    <Property Name="IDSinhVien" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="IDLopHP" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="DiemCC" Type="Double" />
+    <Property Name="DiemTX" Type="Double" />
+    <Property Name="DiemThi" Type="Double" />
+    <Property Name="DiemHe10" Type="Double" />
+    <Property Name="DiemHe4" Type="Double" />
+    <Property Name="DiemChu" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="LopHP" Relationship="Self.fk_IDLopHP_KQLHP" FromRole="KetQuaLopHP" ToRole="LopHP" />
+    <NavigationProperty Name="SinhVien" Relationship="Self.fk_IDSinhVien_KQLHP" FromRole="KetQuaLopHP" ToRole="SinhVien" />
+  </EntityType>
+  <EntityType Name="Khoa">
+    <Key>
+      <PropertyRef Name="IDKhoa" />
+    </Key>
+    <Property Name="IDKhoa" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TenKhoa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GiangViens" Relationship="Self.fk_IDKhoa_GV" FromRole="Khoa" ToRole="GiangVien" />
+    <NavigationProperty Name="Lops" Relationship="Self.fk_IDKhoa_Lop" FromRole="Khoa" ToRole="Lop" />
+  </EntityType>
+  <EntityType Name="Lop">
+    <Key>
+      <PropertyRef Name="IDLop" />
+    </Key>
+    <Property Name="IDLop" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="TenLop" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NienKhoa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="SiSo" Type="Int32" />
+    <Property Name="IDKhoa" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="Khoa" Relationship="Self.fk_IDKhoa_Lop" FromRole="Lop" ToRole="Khoa" />
+    <NavigationProperty Name="SinhViens" Relationship="Self.fk_IDLop_SV" FromRole="Lop" ToRole="SinhVien" />
+  </EntityType>
+  <EntityType Name="LopHP">
+    <Key>
+      <PropertyRef Name="IDLopHP" />
+    </Key>
+    <Property Name="IDLopHP" Type="String" MaxLength="20" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="PhongHoc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgayThi" Type="DateTime" Precision="3" />
+    <Property Name="TongSoSV" Type="Int32" />
+    <Property Name="IDHocPhan" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="IDHocKy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="IDGV" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="GiangVien" Relationship="Self.fk_IDGV_LHP" FromRole="LopHP" ToRole="GiangVien" />
+    <NavigationProperty Name="HocKy" Relationship="Self.fk_IDHocKy_LHP" FromRole="LopHP" ToRole="HocKy" />
+    <NavigationProperty Name="HocPhan" Relationship="Self.fk_IDHocPhan_LHP" FromRole="LopHP" ToRole="HocPhan" />
+    <NavigationProperty Name="KetQuaLopHPs" Relationship="Self.fk_IDLopHP_KQLHP" FromRole="LopHP" ToRole="KetQuaLopHP" />
+  </EntityType>
+  <EntityType Name="SinhVien">
+    <Key>
+      <PropertyRef Name="IDSinhVien" />
+    </Key>
+    <Property Name="IDSinhVien" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="HoTen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Precision="3" />
+    <Property Name="GioiTinh" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="KhoaDKi" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="SoTCDaDat" Type="Int32" />
+    <Property Name="SoTCDaDKi" Type="Int32" />
+    <Property Name="DiemTichLuy" Type="Double" />
+    <Property Name="IDLop" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <NavigationProperty Name="KetQuaLopHPs" Relationship="Self.fk_IDSinhVien_KQLHP" FromRole="SinhVien" ToRole="KetQuaLopHP" />
+    <NavigationProperty Name="Lop" Relationship="Self.fk_IDLop_SV" FromRole="SinhVien" ToRole="Lop" />
+    <NavigationProperty Name="TongKetKies" Relationship="Self.fk_IDSinhVien_TKK" FromRole="SinhVien" ToRole="TongKetKy" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TongKetKy">
+    <Key>
+      <PropertyRef Name="IDSinhVien" />
+      <PropertyRef Name="IDHocKy" />
+    </Key>
+    <Property Name="IDSinhVien" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="IDHocKy" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="DiemTBC" Type="Double" />
+    <Property Name="SoTCDKi" Type="Int32" />
+    <Property Name="SoTCNo" Type="Int32" />
+    <Property Name="XepLoai" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="HocKy" Relationship="Self.fk_IDHocKy_TKK" FromRole="TongKetKy" ToRole="HocKy" />
+    <NavigationProperty Name="SinhVien" Relationship="Self.fk_IDSinhVien_TKK" FromRole="TongKetKy" ToRole="SinhVien" />
+  </EntityType>
+  <Association Name="fk_IDGV_LHP">
+    <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="0..1" />
+    <End Role="LopHP" Type="Self.LopHP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GiangVien">
+        <PropertyRef Name="IDGV" />
+      </Principal>
+      <Dependent Role="LopHP">
+        <PropertyRef Name="IDGV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDKhoa_GV">
+    <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
+    <End Role="GiangVien" Type="Self.GiangVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Khoa">
+        <PropertyRef Name="IDKhoa" />
+      </Principal>
+      <Dependent Role="GiangVien">
+        <PropertyRef Name="IDKhoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDHocKy_LHP">
+    <End Role="HocKy" Type="Self.HocKy" Multiplicity="0..1" />
+    <End Role="LopHP" Type="Self.LopHP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HocKy">
+        <PropertyRef Name="IDHocKy" />
+      </Principal>
+      <Dependent Role="LopHP">
+        <PropertyRef Name="IDHocKy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDHocKy_TKK">
+    <End Role="HocKy" Type="Self.HocKy" Multiplicity="1" />
+    <End Role="TongKetKy" Type="Self.TongKetKy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HocKy">
+        <PropertyRef Name="IDHocKy" />
+      </Principal>
+      <Dependent Role="TongKetKy">
+        <PropertyRef Name="IDHocKy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDHocPhan_LHP">
+    <End Role="HocPhan" Type="Self.HocPhan" Multiplicity="0..1" />
+    <End Role="LopHP" Type="Self.LopHP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HocPhan">
+        <PropertyRef Name="IDHocPhan" />
+      </Principal>
+      <Dependent Role="LopHP">
+        <PropertyRef Name="IDHocPhan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDLopHP_KQLHP">
+    <End Role="LopHP" Type="Self.LopHP" Multiplicity="1" />
+    <End Role="KetQuaLopHP" Type="Self.KetQuaLopHP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LopHP">
+        <PropertyRef Name="IDLopHP" />
+      </Principal>
+      <Dependent Role="KetQuaLopHP">
+        <PropertyRef Name="IDLopHP" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDSinhVien_KQLHP">
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
+    <End Role="KetQuaLopHP" Type="Self.KetQuaLopHP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="IDSinhVien" />
+      </Principal>
+      <Dependent Role="KetQuaLopHP">
+        <PropertyRef Name="IDSinhVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDKhoa_Lop">
+    <End Role="Khoa" Type="Self.Khoa" Multiplicity="0..1" />
+    <End Role="Lop" Type="Self.Lop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Khoa">
+        <PropertyRef Name="IDKhoa" />
+      </Principal>
+      <Dependent Role="Lop">
+        <PropertyRef Name="IDKhoa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDLop_SV">
+    <End Role="Lop" Type="Self.Lop" Multiplicity="0..1" />
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Lop">
+        <PropertyRef Name="IDLop" />
+      </Principal>
+      <Dependent Role="SinhVien">
+        <PropertyRef Name="IDLop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_IDSinhVien_TKK">
+    <End Role="SinhVien" Type="Self.SinhVien" Multiplicity="1" />
+    <End Role="TongKetKy" Type="Self.TongKetKy" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SinhVien">
+        <PropertyRef Name="IDSinhVien" />
+      </Principal>
+      <Dependent Role="TongKetKy">
+        <PropertyRef Name="IDSinhVien" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QLDiemSVEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="GiangViens" EntityType="Self.GiangVien" />
+    <EntitySet Name="HocKies" EntityType="Self.HocKy" />
+    <EntitySet Name="HocPhans" EntityType="Self.HocPhan" />
+    <EntitySet Name="KetQuaLopHPs" EntityType="Self.KetQuaLopHP" />
+    <EntitySet Name="Khoas" EntityType="Self.Khoa" />
+    <EntitySet Name="Lops" EntityType="Self.Lop" />
+    <EntitySet Name="LopHPs" EntityType="Self.LopHP" />
+    <EntitySet Name="SinhViens" EntityType="Self.SinhVien" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TongKetKies" EntityType="Self.TongKetKy" />
+    <AssociationSet Name="fk_IDGV_LHP" Association="Self.fk_IDGV_LHP">
+      <End Role="GiangVien" EntitySet="GiangViens" />
+      <End Role="LopHP" EntitySet="LopHPs" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDKhoa_GV" Association="Self.fk_IDKhoa_GV">
+      <End Role="Khoa" EntitySet="Khoas" />
+      <End Role="GiangVien" EntitySet="GiangViens" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDHocKy_LHP" Association="Self.fk_IDHocKy_LHP">
+      <End Role="HocKy" EntitySet="HocKies" />
+      <End Role="LopHP" EntitySet="LopHPs" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDHocKy_TKK" Association="Self.fk_IDHocKy_TKK">
+      <End Role="HocKy" EntitySet="HocKies" />
+      <End Role="TongKetKy" EntitySet="TongKetKies" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDHocPhan_LHP" Association="Self.fk_IDHocPhan_LHP">
+      <End Role="HocPhan" EntitySet="HocPhans" />
+      <End Role="LopHP" EntitySet="LopHPs" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDLopHP_KQLHP" Association="Self.fk_IDLopHP_KQLHP">
+      <End Role="LopHP" EntitySet="LopHPs" />
+      <End Role="KetQuaLopHP" EntitySet="KetQuaLopHPs" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDSinhVien_KQLHP" Association="Self.fk_IDSinhVien_KQLHP">
+      <End Role="SinhVien" EntitySet="SinhViens" />
+      <End Role="KetQuaLopHP" EntitySet="KetQuaLopHPs" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDKhoa_Lop" Association="Self.fk_IDKhoa_Lop">
+      <End Role="Khoa" EntitySet="Khoas" />
+      <End Role="Lop" EntitySet="Lops" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDLop_SV" Association="Self.fk_IDLop_SV">
+      <End Role="Lop" EntitySet="Lops" />
+      <End Role="SinhVien" EntitySet="SinhViens" />
+    </AssociationSet>
+    <AssociationSet Name="fk_IDSinhVien_TKK" Association="Self.fk_IDSinhVien_TKK">
+      <End Role="SinhVien" EntitySet="SinhViens" />
+      <End Role="TongKetKy" EntitySet="TongKetKies" />
+    </AssociationSet>
+    <FunctionImport Name="addKhoa">
+      <Parameter Name="IDK" Mode="In" Type="String" />
+      <Parameter Name="Ten" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="addLCN">
+      <Parameter Name="IDLCN" Mode="In" Type="String" />
+      <Parameter Name="Ten" Mode="In" Type="String" />
+      <Parameter Name="IDK" Mode="In" Type="String" />
+      <Parameter Name="NK" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="addLHP">
+      <Parameter Name="IDLHP" Mode="In" Type="String" />
+      <Parameter Name="IDHP" Mode="In" Type="String" />
+      <Parameter Name="hk" Mode="In" Type="String" />
+      <Parameter Name="NgayThi" Mode="In" Type="DateTime" />
+      <Parameter Name="PH" Mode="In" Type="String" />
+      <Parameter Name="IDGV" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="addSV">
+      <Parameter Name="IDSV" Mode="In" Type="String" />
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="IDL" Mode="In" Type="String" />
+      <Parameter Name="NS" Mode="In" Type="DateTime" />
+      <Parameter Name="GT" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="deleteSV">
+      <Parameter Name="IDSV" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="delKhoa">
+      <Parameter Name="IDK" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="delLCN">
+      <Parameter Name="IDLCN" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="delLHP">
+      <Parameter Name="IDLHP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="delSV">
+      <Parameter Name="IDSV" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="insertDHP">
+      <Parameter Name="IDSV" Mode="In" Type="String" />
+      <Parameter Name="IDLHP" Mode="In" Type="String" />
+      <Parameter Name="diemCC" Mode="In" Type="Double" />
+      <Parameter Name="diemTX" Mode="In" Type="Double" />
+      <Parameter Name="diemThi" Mode="In" Type="Double" />
+    </FunctionImport>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(QLDiemSVModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(QLDiemSVModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="updateTKK_SV">
+      <Parameter Name="IDSV" Mode="In" Type="String" />
+      <Parameter Name="KyHoc" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updKhoa">
+      <Parameter Name="IDK" Mode="In" Type="String" />
+      <Parameter Name="Ten" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updLCN">
+      <Parameter Name="IDLCN" Mode="In" Type="String" />
+      <Parameter Name="Ten" Mode="In" Type="String" />
+      <Parameter Name="IDK" Mode="In" Type="String" />
+      <Parameter Name="NK" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updLHP">
+      <Parameter Name="IDLHP" Mode="In" Type="String" />
+      <Parameter Name="IDHP" Mode="In" Type="String" />
+      <Parameter Name="hk" Mode="In" Type="String" />
+      <Parameter Name="NgayThi" Mode="In" Type="DateTime" />
+      <Parameter Name="PH" Mode="In" Type="String" />
+      <Parameter Name="IDGV" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="updSV">
+      <Parameter Name="IDSV" Mode="In" Type="String" />
+      <Parameter Name="ten" Mode="In" Type="String" />
+      <Parameter Name="IDL" Mode="In" Type="String" />
+      <Parameter Name="NS" Mode="In" Type="DateTime" />
+      <Parameter Name="GT" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="viewCCHT" ReturnType="Collection(QLDiemSVModel.viewCCHT_Result)">
+      <Parameter Name="IDHK" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="viewDiemLHP" ReturnType="Collection(QLDiemSVModel.viewDiemLHP_Result)">
+      <Parameter Name="IDLHP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="viewHB" ReturnType="Collection(QLDiemSVModel.viewHB_Result)">
+      <Parameter Name="IDHK" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="viewHP" ReturnType="Collection(QLDiemSVModel.viewHP_Result)">
+      <Parameter Name="IDHP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="viewKhoa" />
+    <FunctionImport Name="viewLCN" ReturnType="Collection(QLDiemSVModel.viewLCN_Result)">
+      <Parameter Name="IDLCN" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="viewLCNK" ReturnType="Collection(QLDiemSVModel.viewLCNK_Result)">
+      <Parameter Name="IDK" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="viewLHP" ReturnType="Collection(QLDiemSVModel.viewLHP_Result)">
+      <Parameter Name="IDLHP" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="viewProfile" ReturnType="Collection(QLDiemSVModel.viewProfile_Result)">
+      <Parameter Name="IDSV" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="viewWithClass" ReturnType="Collection(QLDiemSVModel.viewWithClass_Result)">
+      <Parameter Name="IDL" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="viewDiemLHP1" ReturnType="Collection(QLDiemSVModel.viewDiemLHP1_Result)">
+      <Parameter Name="IDLHP" Mode="In" Type="String" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="viewCCHT_Result">
+    <Property Type="String" Name="IDSinhVien" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="IDLop" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="NgaySinh" Nullable="true" Precision="23" />
+    <Property Type="String" Name="GioiTinh" Nullable="true" MaxLength="10" />
+    <Property Type="String" Name="IDKhoa" Nullable="true" MaxLength="10" />
+    <Property Type="Double" Name="DiemTBC" Nullable="true" />
+    <Property Type="String" Name="Số_Mức_Cảnh_Cáo" Nullable="false" MaxLength="1" />
+  </ComplexType>
+  <ComplexType Name="viewDiemLHP_Result">
+    <Property Type="String" Name="IDSinhVien" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="IDLopHP" Nullable="false" MaxLength="20" />
+    <Property Type="Double" Name="DiemCC" Nullable="true" />
+    <Property Type="Double" Name="DiemTX" Nullable="true" />
+    <Property Type="Double" Name="DiemThi" Nullable="true" />
+    <Property Type="Double" Name="DiemHe10" Nullable="true" />
+    <Property Type="Double" Name="DiemHe4" Nullable="true" />
+    <Property Type="String" Name="DiemChu" Nullable="true" MaxLength="10" />
+  </ComplexType>
+  <ComplexType Name="viewHB_Result">
+    <Property Type="Int64" Name="Xếp_Hạng" Nullable="true" />
+    <Property Type="String" Name="IDSinhVien" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="IDLop" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="IDKhoa" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="SoTCDKi" Nullable="true" />
+    <Property Type="Int32" Name="Số_TC_Đạt" Nullable="true" />
+    <Property Type="Double" Name="DiemTBC" Nullable="true" />
+    <Property Type="String" Name="XepLoai" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="viewHP_Result">
+    <Property Type="String" Name="IDLopHP" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="PhongHoc" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="NgayThi" Nullable="true" Precision="23" />
+    <Property Type="String" Name="IDHocKy" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="TongSoSV" Nullable="true" />
+    <Property Type="String" Name="TenHocPhan" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Column1" Nullable="true" MaxLength="62" />
+  </ComplexType>
+  <ComplexType Name="viewLCN_Result">
+    <Property Type="String" Name="IDLop" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TenLop" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NienKhoa" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TenKhoa" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SiSo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="viewLCNK_Result">
+    <Property Type="String" Name="IDLop" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="TenLop" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="NienKhoa" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TenKhoa" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="SiSo" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="viewLHP_Result">
+    <Property Type="String" Name="IDLopHP" Nullable="false" MaxLength="20" />
+    <Property Type="String" Name="PhongHoc" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="NgayThi" Nullable="true" Precision="23" />
+    <Property Type="String" Name="IDHocKy" Nullable="true" MaxLength="10" />
+    <Property Type="Int32" Name="TongSoSV" Nullable="true" />
+    <Property Type="String" Name="TenHocPhan" Nullable="true" MaxLength="100" />
+    <Property Type="String" Name="Column1" Nullable="true" MaxLength="62" />
+  </ComplexType>
+  <ComplexType Name="viewProfile_Result">
+    <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="NgaySinh" Nullable="true" Precision="23" />
+    <Property Type="String" Name="GioiTinh" Nullable="true" MaxLength="10" />
+    <Property Type="Double" Name="DiemTichLuy" Nullable="true" />
+    <Property Type="Int32" Name="SoTCDaDKi" Nullable="true" />
+    <Property Type="Int32" Name="SoTCDaDat" Nullable="true" />
+    <Property Type="String" Name="TenLop" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TenKhoa" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="viewWithClass_Result">
+    <Property Type="String" Name="IDSinhVien" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="GioiTinh" Nullable="true" MaxLength="10" />
+    <Property Type="DateTime" Name="NgaySinh" Nullable="true" Precision="23" />
+    <Property Type="Int32" Name="SoTCDaDKi" Nullable="true" />
+    <Property Type="Int32" Name="SoTCDaDat" Nullable="true" />
+    <Property Type="String" Name="TenLop" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="TenKhoa" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="viewDiemLHP1_Result">
+    <Property Type="String" Name="IDSinhVien" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="HoTen" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="IDLopHP" Nullable="false" MaxLength="20" />
+    <Property Type="Double" Name="DiemCC" Nullable="true" />
+    <Property Type="Double" Name="DiemTX" Nullable="true" />
+    <Property Type="Double" Name="DiemThi" Nullable="true" />
+    <Property Type="Double" Name="DiemHe10" Nullable="true" />
+    <Property Type="Double" Name="DiemHe4" Nullable="true" />
+    <Property Type="String" Name="DiemChu" Nullable="true" MaxLength="10" />
+  </ComplexType>
+</Schema>
